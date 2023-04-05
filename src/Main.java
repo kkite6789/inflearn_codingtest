@@ -1,25 +1,37 @@
 import java.util.Scanner;
 
 public class Main {
-    public String solution(String str1){
-        String[] str2 = str1.split(" ");
-        String str3="";
+    public String[] solution(int num){
+        Scanner sc = new Scanner(System.in);
+        String str1 = null;
+        String reverseWord = null;
 
-        for(int i=0; i<str2.length; i++)
+        String[] words = new String[num];
+        for(int i=0; i<num; i++)
         {
-            if(str3.length()<str2[i].length())
+            reverseWord = "";
+            str1 = sc.next();
+            for(int j=str1.length()-1; j>=0; j--)
             {
-                str3 = str2[i];
+                reverseWord += str1.charAt(j);
             }
+            words[i] = reverseWord;
         }
-        return str3;
+
+        return words;
     }
 
     public static void main(String[] args) {
         Main main = new Main();
         Scanner sc = new Scanner(System.in);
-        String str1 = sc.nextLine();
 
-        System.out.println(main.solution(str1));
+        int num = sc.nextInt();
+        String[] result;
+
+        result=main.solution(num);
+        for(int i=0; i<result.length; i++)
+        {
+            System.out.println(result[i]);
+        }
     }
 }
