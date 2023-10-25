@@ -20,6 +20,7 @@ public class practice1_5 {
             }
 //            System.out.println(reverseWord[i]);
         }
+
 //        System.out.println("===========================");
         for (int j = 0; j < word.length(); j++)
         {
