@@ -1,4 +1,7 @@
 package chapter1;
+
+import java.util.Scanner;
+
 /*
 현수는 영희에게 알파벳 대문자로 구성된 비밀편지를 매일 컴퓨터를 이용해 보냅니다.
 비밀편지는 현수와 영희가 서로 약속한 암호로 구성되어 있습니다.
@@ -32,7 +35,56 @@ package chapter1;
  */
 public class practice1_12 {
 
+    public static String solution(int count, String word) {
+
+        String[] words = new String[count];
+        int num = 0;
+        int[] nums = new int[count];
+        String answer = "";
+
+        for(int i=0; i<count; i++)
+        {
+            words[i]= word.substring(i*7,(i+1)*7);
+            num = goDecimalNumber(words[i]);
+            nums[i] = num;
+
+            answer += ((char)num);
+        }
+
+        return answer;
+    }
+
+    public static int goDecimalNumber(String word){
+
+        int sum = 0;
+        for(int i=0; i<word.length(); i++)
+        {
+            if(i==0)
+            {
+                sum += Integer.parseInt(word.substring(word.length()-1));
+            }
+            else
+            {
+                sum += Integer.parseInt(word.substring(word.length()-i-1,word.length()-i)) * Math.pow(2,i);
+            }
+        }
+
+        return sum;
+    }
+
+
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int count = sc.nextInt();
+        String answer="";
+        sc.nextLine();
+        String word = sc.nextLine();
+
+        word=word.replace("*","0");
+        word=word.replace("#","1");
+        answer=solution(count, word);
+
+        System.out.println(answer);
 
     }
 }
