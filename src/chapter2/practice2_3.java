@@ -1,6 +1,5 @@
 package chapter2;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /*
@@ -25,35 +24,25 @@ public class practice2_3 {
 
     public static void solution(int num, String player1, String player2)
     {
-        int[] player1Point = new int[num];
-        int[] player2Point = new int[num];
+        String[] player1Point = player1.split(" ");
+        String[] player2Point = player2.split(" ");
 
         for(int i=0; i<num; i++)
         {
-            player1Point[i] = Integer.parseInt(Arrays.toString(player1.split(" ")));
-            player2Point[i] = Integer.parseInt(Arrays.toString(player2.split(" ")));
-
-            if((player1Point[i]==2 && player2Point[i]==1) || (player1Point[i]==3 && player2Point[i]==2) || (player1Point[i]==1 && player2Point[i]==3))
+            if((player1Point[i].equals("2") && player2Point[i].equals("1")) || (player1Point[i].equals("3") && player2Point[i].equals("2")) || (player1Point[i].equals("1") && player2Point[i].equals("3")))
             {
                 System.out.println("A");
             }
-            else if((player1Point[i]==1 && player2Point[i]==2) || (player1Point[i]==2 && player2Point[i]==3) || (player1Point[i]==3 && player2Point[i]==1))
+            else if((player1Point[i].equals("1") && player2Point[i].equals("2")) || (player1Point[i].equals("2") && player2Point[i].equals("3")) || (player1Point[i].equals("3") && player2Point[i].equals("1")))
             {
                 System.out.println("B");
             }
-            else if(player1Point[i]==(player2Point[i]))
+            else if(player1Point[i].equals(player2Point[i]))
             {
                 System.out.println("D");
             }
-            else
-            {
-                System.out.println("error");
-            }
         }
-
-
     }
-
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -64,6 +53,5 @@ public class practice2_3 {
         String player2 = sc.nextLine();
 
         solution(num,player1,player2);
-
     }
 }
