@@ -25,7 +25,6 @@ public class practice2_2 {
                 if(arr[1] > arr[0]) {
                     maxNum = arr[1];
                     count++;
-//                    System.out.println("count 증가 -"+count);
                 }
                 else {
                     maxNum = arr[0];
@@ -35,7 +34,6 @@ public class practice2_2 {
                 if (arr[i] > maxNum) {
                     maxNum = arr[i];
                     count++;
-//                    System.out.println("count 증가 -"+count);
                 }
             }
         }
