@@ -1,5 +1,7 @@
 package chapter2;
 
+import java.util.Scanner;
+
 /*
 9. 격자판 최대합
 설명
@@ -17,5 +19,56 @@ N*N의 격자판이 주어지면 각 행의 합, 각 열의 합, 두 대각선�
 
  */
 public class practice2_9 {
+
+    public static void solution(int[][] arr){
+
+        //1. 각 행의 합
+        int sum1 = 0;
+        int sum2 = 0;
+        int[] score = new int[12];
+
+        for(int i=0; i<arr.length; i++){
+            for(int j=0; j<arr[i].length; j++){
+                    sum1+=arr[i][j];
+                    sum2+=arr[j][i];
+            }
+            score[i] = sum1;
+            score[i+arr.length] = sum2;
+            sum1=0;
+            sum2=0;
+        }
+
+        //3. 두 대각선의 합
+        for(int i=0; i<arr.length; i++) {
+            sum1 += arr[i][i];
+            sum2 += arr[i][arr.length-i-1];
+        }
+        score[10] = sum1;
+        score[11] = sum2;
+
+        int max = 0;
+
+        for (int i : score) {
+            if (i > max) {
+                max = i;
+            }
+        }
+        System.out.println(max);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+
+        int[][] arr = new int[num][num];
+
+        for(int i=0; i<num; i++){
+            for(int j=0; j<num; j++){
+                arr[i][j] = sc.nextInt();
+            }
+            sc.nextLine();
+        }
+        solution(arr);
+    }
 
 }
