@@ -1,4 +1,7 @@
 package chapter2;
+
+import java.util.Scanner;
+
 /*
 7. 점수계산
 설명
@@ -22,7 +25,33 @@ OX 문제는 맞거나 틀린 두 경우의 답을 가지는 문제를 말한다
  */
 public class practice2_7 {
 
-    public static void main(String[] args) {
+    public static void solution(int num, String answer){
+        String[] arr;
+        arr = answer.split(" ");
+        int score=0;
+        int point=0;
 
+        for(int i=0; i<num; i++)
+        {
+            if(arr[i].equals("1"))
+            {
+                point+=1;
+                score+=point;
+            }
+            else if(arr[i].equals("0"))
+            {
+                point=0;
+            }
+        }
+        System.out.println(score);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        sc.nextLine();
+        String answer = sc.nextLine();
+
+        solution(num,answer);
     }
 }
