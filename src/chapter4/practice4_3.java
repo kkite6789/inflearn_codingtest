@@ -29,6 +29,15 @@ N일간의 매출기록과 연속구간의 길이 K가 주어지면 첫 번째 �
 public class practice4_3 {
 
     public static void solution(int n, int k, int[] arr){
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        for(int i=0; i<=n-k; i++){
+            for(int j=i; j<i+k; j++){
+                    map.put(arr[j],map.getOrDefault(arr[j],0)+1);
+            }
+            System.out.print(map.size()+" ");
+            map.clear();
+        }
 
 
     }
