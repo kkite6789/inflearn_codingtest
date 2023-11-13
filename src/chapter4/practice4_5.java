@@ -17,9 +17,10 @@ import java.util.*;
  */
 public class practice4_5 {
 
-    public static void solution(int n,int k, int[] arr){
+    public static int solution(int n,int k, int[] arr){
 
         HashMap<Integer,Integer> sumMap = new HashMap<>();
+        TreeSet<Integer> tSet = new TreeSet<>(Collections.reverseOrder());
         int sum;
 
         for(int i=0; i<n-2; i++){
@@ -27,23 +28,36 @@ public class practice4_5 {
                 for(int m=j+1; m<n; m++){
                     sum=arr[i]+arr[j]+arr[m];
                     sumMap.put(sum,sumMap.getOrDefault(sum,0)+1);
+                    tSet.add(sum);
 //                    System.out.println(sum);
                 }
             }
         }
 
-        List<Integer> list = new ArrayList<>(sumMap.keySet());
-        Collections.sort(list);
-        Collections.reverse(list);
-        int count =1;
+//        System.out.println("tSet.size()="+tSet.size());
+//        System.out.println("tSet.first()="+tSet.first());
+//        System.out.println("tSet.last()="+tSet.last());
 
-        for(int key : list){
-//            System.out.println(map.get(key));
-            if(count==3){
-                System.out.println(key);
-            }
+//        List<Integer> list = new ArrayList<>(sumMap.keySet());
+//        Collections.sort(list);
+//        Collections.reverse(list);
+        int count =0;
+
+        for(int x : tSet){
             count++;
+            if(count == k){
+                return x;
+            }
         }
+
+//        for(int key : list){
+//            System.out.println(map.get(key));
+//            count++;
+//            if(count==k){
+//                System.out.println(key);
+//            }
+//        }
+        return -1;
     }
 
 
@@ -58,7 +72,6 @@ public class practice4_5 {
         for(int i=0; i<n; i++){
             arr[i]=sc.nextInt();
         }
-
-        solution(n,k,arr);
+        System.out.println(solution(n,k,arr));
     }
 }
