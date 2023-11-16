@@ -1,6 +1,7 @@
 package chapter5;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 /*
 1. 올바른 괄호
@@ -20,25 +21,24 @@ public class practice5_1 {
     public static String solution(String str){
 
         int count = 0;
-        String answer;
+        String answer="YES";
 
-        for(int i=0; i< str.length(); i++){
-            if(str.charAt(i) == '('){
-                count++;
-//                System.out.println("++");
+        Stack<Character> stack = new Stack<>();
+
+        for(char x : str.toCharArray()){
+            if(x=='('){
+                stack.push(x);
+//                System.out.println(x);
+//                System.out.println("stack="+stack);
             }
-            if(str.charAt(i) == ')'){
-                count--;
-//                System.out.println("--");
-            }
-            if(count<0){
-                answer = "NO";
-                return answer;
+            else if(x==')'){
+                if(stack.isEmpty()){
+                    return "NO";
+                }
+                stack.pop();
             }
         }
-        if(count==0){
-            answer = "YES";
-        }else{
+        if(!stack.isEmpty()){
             answer="NO";
         }
 

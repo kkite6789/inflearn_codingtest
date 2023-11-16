@@ -37,8 +37,13 @@ moves 배열 각 원소들의 값은 1 이상이며 board 배열의 가로 크�
 첫 줄에 터트려져 사라진 인형의 개수를 출력합니다.
  */
 public class practice5_3 {
-    public static void solution(){
+    public static int solution(int n,int[][] board,int m,int[] moves){
+        //터뜨린 인형갯수 - 정답항목
+        int answer=0;
 
+
+
+        return 0;
     }
 
     public static void main(String[] args) {
@@ -65,5 +70,7 @@ public class practice5_3 {
         }
         System.out.println();
         System.out.println("[moves] :["+Arrays.toString(moves)+"]");
+
+        System.out.println(solution(n,board,m,moves));
     }
 }

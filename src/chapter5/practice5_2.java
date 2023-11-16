@@ -1,6 +1,7 @@
 package chapter5;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 /*
 2. 괄호문자제거
@@ -17,19 +18,20 @@ import java.util.Scanner;
 public class practice5_2 {
     public static String solution(String str){
         StringBuilder answer = new StringBuilder();
-        int count = 0;
+        Stack<Character> stack = new Stack<>();
 
-        for(int i=0; i<str.length(); i++){
-            if(str.charAt(i) == '('){
-                count++;
-            }
-            else if(str.charAt(i) == ')' && count>0 ){
-                count--;
-            }
-            else if(count==0){
-                answer.append(str.charAt(i));
+        for(char x : str.toCharArray()){
+            if(x=='('){
+                stack.push(x);
+//                System.out.println(stack+"stack.push("+x+")");
+            } else if(x==')'){
+                stack.pop();
+//                System.out.println(stack+"stack.pop()");
+            } else if(stack.isEmpty()){
+                answer.append(x);
             }
         }
+
         return answer.toString();
     }
 
