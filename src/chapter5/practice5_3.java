@@ -38,12 +38,41 @@ moves 배열 각 원소들의 값은 1 이상이며 board 배열의 가로 크�
  */
 public class practice5_3 {
     public static int solution(int n,int[][] board,int m,int[] moves){
+//        System.out.println("[m] : ["+m+"], "+"[moves] : ["+Arrays.toString(moves)+"]");
         //터뜨린 인형갯수 - 정답항목
-        int answer=0;
-
-
-
-        return 0;
+        int answer = 0;
+        int pick;
+        Stack<Integer> st = new Stack<>();
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                // 고르는 값이 0이 나오지 않을때 까지 반복
+                if(board[j][moves[i]-1] != 0){
+                    pick = board[j][moves[i]-1];
+//                    System.out.println("보드판 위치 = "+ j +","+ (moves[i]-1) +" / j="+j+" / pick="+pick);
+                    // stack에 처음 쌓이는 값은 무조건 쌓인다.
+                    if(st.isEmpty()){
+                        st.push(pick);
+//                        System.out.println(st);
+                        board[j][moves[i]-1]=0;
+                    }
+                    // stack의 마지막 값과 뽑힌 값이 동일하지 않을 때
+                    else if(st.peek() != pick){
+                        st.push(pick);
+//                        System.out.println(st);
+                        board[j][moves[i]-1]=0;
+                    }
+                    // stack의 마지막 값과 뽑힌 값이 동일할 때
+                    else if(st.peek() == pick){
+                        st.pop();
+//                        System.out.println(st+" pop()");
+                        answer+=2;
+                        board[j][moves[i]-1]=0;
+                    }
+                    break;
+                }
+            }
+        }
+        return answer;
     }
 
     public static void main(String[] args) {
@@ -57,9 +86,10 @@ public class practice5_3 {
             for(int j=0; j<n; j++){
                 board[i][j] = sc.nextInt();
             }
-            System.out.println();
-            System.out.print(Arrays.toString(board[i]));
+//            System.out.println();
+//            System.out.print(Arrays.toString(board[i]));
         }
+//        System.out.println();
         //크레인 움직이는 수
         int m = sc.nextInt();
 
@@ -68,8 +98,7 @@ public class practice5_3 {
         for(int i=0; i<m; i++){
             moves[i] = sc.nextInt();
         }
-        System.out.println();
-        System.out.println("[moves] :["+Arrays.toString(moves)+"]");
+//        System.out.println();
 
         System.out.println(solution(n,board,m,moves));
     }
