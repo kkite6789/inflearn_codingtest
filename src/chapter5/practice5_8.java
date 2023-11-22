@@ -26,7 +26,7 @@ public class practice5_8 {
 
     public static int solution(int n, int m, int[] arr){
         int answer=0;
-        int num=0;
+//        int num=0;
         int answerNum=arr[m];
         // 환자 위험도를 담을 queue
         Queue<Integer> q = new LinkedList<>();
@@ -40,19 +40,22 @@ public class practice5_8 {
         System.out.println(q);
         System.out.println(pq);
 
-//        while(!q.isEmpty()){
-//            if(q.peek()<pq.peek()){
-//                q.offer(q.poll());
-//                System.out.println(q);
-//            } else if(q.peek() == pq.peek()){
-//
-//                q.poll();
-//                pq.poll();
-//                answer+=1;
-//            }
-//
-//        }
-
+        while(!q.isEmpty() && !pq.isEmpty()){
+            if(q.peek()<pq.peek()){
+                q.offer(q.poll());
+                System.out.println(q);
+            } else if(Objects.equals(q.peek(), pq.peek())){
+                if(q.peek()==answerNum){
+                    q.poll();
+                    pq.poll();
+                    answer+=1;
+                    return answer;
+                }
+                q.poll();
+                pq.poll();
+                answer+=1;
+            }
+        }
         return answer;
     }
 
