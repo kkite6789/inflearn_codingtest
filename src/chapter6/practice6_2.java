@@ -1,12 +1,13 @@
 package chapter6;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /*
-1. 선택 정렬
+2. 버블 정렬
 설명
 N개의 숫자가 입력되면 오름차순으로 정렬하여 출력하는 프로그램을 작성하세요.
-정렬하는 방법은 선택정렬입니다.
+정렬하는 방법은 버블정렬입니다.
 
 입력
 첫 번째 줄에 자연수 N(1<=N<=100)이 주어집니다.
@@ -15,20 +16,22 @@ N개의 숫자가 입력되면 오름차순으로 정렬하여 출력하는 프�
 출력
 오름차순으로 정렬된 수열을 출력합니다.
  */
-public class practice6_1 {
+public class practice6_2 {
 
     public static void solution(int n, int[] arr){
+
         int swap;
-        for(int i=0; i<n; i++){
-            for(int j=i+1; j<n; j++){
-                if(arr[i]>arr[j]){
-                    swap=arr[i];
-                    arr[i]=arr[j];
-                    arr[j]=swap;
+
+        for(int i=1; i<n; i++){
+            for(int j=0; j<n-i; j++){
+                if(arr[j]>arr[j+1]){
+                    swap=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=swap;
                 }
             }
+//            System.out.println(i+"번째 정렬 중- "+Arrays.toString(arr));
         }
-//        System.out.println(Arrays.toString(arr));
         for(int i=0; i<n; i++){
             if(i>=1){
                 System.out.print(" ");
@@ -41,8 +44,9 @@ public class practice6_1 {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[] arr = new int[n];
+
         for(int i=0; i<n; i++){
-            arr[i] = sc.nextInt();
+            arr[i]=sc.nextInt();
         }
         solution(n,arr);
     }
