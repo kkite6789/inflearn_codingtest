@@ -17,36 +17,24 @@ N개의 숫자가 입력되면 오름차순으로 정렬하여 출력하는 프�
  */
 public class practice6_3 {
 
-    public static void solution(int n, int[] arr){
-//        int keep;
-
-//        for(int i=1; i<n; i++){
-//            keep=arr[i];
-//            for(int j=i; j<0; j--){
-//                if(j==0){
-//                    arr
-//                }
-//                if(keep>arr[j-1]){
-//                    keep=arr[j-1];
-//
-//                }
-//                else if(keep<arr[j-1]){
-//                    arr[j-1]=arr[j];
-//                }
-//            }
-
-//        }
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] arr= new int[n];
-
-        for(int i=0; i<n; i++){
-            arr[i]=sc.nextInt();
+    public static int[] solution(int n, int[] arr){
+        for(int i=1; i<n; i++){
+            int tmp=arr[i], j;
+            for(j=i-1; j>=0; j--){
+                if(arr[j]>tmp) arr[j+1]=arr[j];
+                else break;
+            }
+            arr[j+1]=tmp;
         }
+        return arr;
+    }
+    public static void main(String[] args){
 
-        solution(n,arr);
+        Scanner kb = new Scanner(System.in);
+        int n=kb.nextInt();
+        int[] arr=new int[n];
+        for(int i=0; i<n; i++) arr[i]=kb.nextInt();
+        for(int x : solution(n, arr)) System.out.print(x+" ");
     }
 }
+
